@@ -28,8 +28,8 @@ g = .250 #GHz
 kappa = 2*np.pi*0.020 #GHz
 omega_d = omega_r
 
-N1 = 4
-N2 = 40
+N1 = 8
+N2 = 100
 
 assert N1 != 1
 assert N2 != 1
@@ -58,7 +58,7 @@ def hamiltonian(t, drive_amp):
 # Setup the operators, initial states, and variables
 ##########################################
 
-times = np.linspace(0, 2/kappa, 101) #0 to kappta*t=1 honestly IDK how they made their figure look like it does. RIP
+times = np.linspace(0, 2/kappa, 1001) #0 to kappta*t=1 honestly IDK how they made their figure look like it does. RIP
 drive1 = 2*np.pi*0.28
 
 decay = qt.tensor(qt.qeye(N1), qt.destroy(N2))

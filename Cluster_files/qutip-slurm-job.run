@@ -6,13 +6,13 @@
 # Keep the # in front of the SBATCH lines or they won't work!  
 
 # A name for this job
-#SBATCH -J sample-job-name
+#SBATCH -J qproject-cluster
 
 # The partition (queue) to run on: Most jobs should specify both
 # jila and nistq.  However, long-running jobs are eligible to run
 # on nistq only if the user is a member of a NIST quantum theory group
 # (i.e., Rey, Holland, or Bohn)
-#SBATCH -p jila,nistq
+#SBATCH -p jila
 
 # QOS determines the job priority and permitted maximum duration.
 # Jobs up to 7 days long should use 'standard', otherwise 'long'
@@ -20,7 +20,7 @@
 #SBATCH -q standard
 
 # Number of processor cores required, e.g., 4
-#SBATCH -n 4
+#SBATCH -n 16
 
 # Number of nodes to run on.  The JILA Cluster is not suitable for
 # spanning nodes (Summit, XSEDE, etc are good places to run these jobs)
@@ -31,11 +31,11 @@
 # or the job will likely fail.  If you're not sure, estimate high.
 #
 # The cluster is designed for roughly 7.5GiB/CPU, making that a fine guess.
-#SBATCH --mem=30G
+#SBATCH --mem=40G
 
 # Maximum expected wall time this job will require
 # Format is DD-HH:MM:SS, this one will end in 15 seconds
-#SBATCH -t 00-00:0:15
+#SBATCH -t 03-00:00:00
 
 # Scratch disk is storage local to a compute node and required for high
 # i/o jobs using temporary files (typically quantum chemistry jobs).  
@@ -59,9 +59,9 @@
 # for the software you want to use: this is the "module load" command.
 # Replace matlab with the package you'll use.
 
-module load matlab
+module load pythonexit(
 
 # The following example runs a MATLAB program stored in example.m
 # Replace this with commands to run your job.
 
-matlab < example.m 
+python < Qutip_script_cluster.py 
